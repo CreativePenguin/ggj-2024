@@ -34,6 +34,7 @@ export default function App() {
     toggleContinuousRecording(!isContinousRecording);
     while(isContinousRecording) {
       startRecording();
+      console.log(isRecording);
       setTimeout(() => {
         stopRecording();
         addAudioElement(recordingBlob);

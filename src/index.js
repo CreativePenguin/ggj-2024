@@ -9,7 +9,7 @@ import TextToSpeech from './TextToSpeech';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TextToSpeech />
+    <SpeechToText />
   </React.StrictMode>
 );
 

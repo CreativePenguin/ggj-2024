@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import tripathi from './tripathi.png';
+import tripathi2 from './tripathi2.png';
 import './App.css';
 import buttonClickSound from './buttonClickSound.mp3'; // Import your MP3 file
 
@@ -68,6 +69,7 @@ const App = () => {
   const [showCountdown, setShowCountdown] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
+  const [tripathiImage, setTripathiImage] = useState(tripathi);
 
   useEffect(() => {
     if (gameStarted) {
@@ -102,11 +104,16 @@ const App = () => {
     setScore(0);
     setTime(15);
     setGameOver(false);
+    setTripathiImage(tripathi);
   };
 
   const handleButtonClick = (buttonId) => {
     if (buttonId === 'tripathi') {
       setScore((prevScore) => Math.max(0, prevScore - 2)); // Deduct 2 points
+      setTripathiImage(tripathi2); // Change the image to tripathi2
+      setTimeout(() => {
+        setTripathiImage(tripathi); // Revert back to the original image after 2 seconds
+      }, 2000);
     } else {
       setScore((prevScore) => prevScore + 1);
 
@@ -183,7 +190,7 @@ const App = () => {
           )}
           <img
             className="moving-logo"
-            src={tripathi}
+            src={tripathiImage}
             alt="Logo"
             onClick={() => handleButtonClick('tripathi')}
           />

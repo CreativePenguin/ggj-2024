@@ -17,6 +17,31 @@ export default function App() {
     document.body.appendChild(audio);
   };
 
+  const {
+    startRecording,
+    stopRecording,
+    togglePauseResume,
+    recordingBlob,
+    isRecording,
+    isPaused,
+    recordingTime,
+    mediaRecorder
+  } = useAudioRecorder();
+  
+  const [isContinousRecording, toggleContinuousRecording] = React.useState(false)
+
+  const continuousRecording = () => {
+    toggleContinuousRecording(!isContinousRecording);
+    while(isContinousRecording) {
+      startRecording();
+      setTimeout(() => {
+        stopRecording();
+        addAudioElement(recordingBlob);
+      }, 1000);
+      startRecording();
+    }
+  }
+
   return (
     <div>
       <AudioRecorder
@@ -29,11 +54,8 @@ export default function App() {
       <br />
       <button onClick={recorderControls.stopRecording}>Stop recording</button>
       <br />
+      <button onClick={continuousRecording}>Continuous Recording</button>
+      <button onClick={() => toggleContinuousRecording(false)}>Stop no matter what</button>
     </div>
   );
 }
-
-/*
-  In case you'd like to update colors of the icons just follow the instruction here:
-  https://github.com/samhirtarif/react-audio-recorder/issues/19#issuecomment-1420248073
-*/

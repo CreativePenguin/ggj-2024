@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
-function App() {
+export default function App() {
+  const recorderControls = useAudioRecorder(
+    {
+      noiseSuppression: true,
+      echoCancellation: true,
+    },
+    (err) => console.table(err) // onNotAllowedOrFound
+  );
+  const addAudioElement = (blob) => {
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement('audio');
+    audio.src = url;
+    audio.controls = true;
+    document.body.appendChild(audio);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AudioRecorder
+        onRecordingComplete={(blob) => addAudioElement(blob)}
+        recorderControls={recorderControls}
+        // downloadOnSavePress={true}
+        // downloadFileExtension="mp3"
+        showVisualizer={true}
+      />
+      <br />
+      <button onClick={recorderControls.stopRecording}>Stop recording</button>
+      <br />
     </div>
   );
 }
 
-export default App;
+/*
+  In case you'd like to update colors of the icons just follow the instruction here:
+  https://github.com/samhirtarif/react-audio-recorder/issues/19#issuecomment-1420248073
+*/

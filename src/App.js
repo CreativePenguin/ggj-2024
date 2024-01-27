@@ -1,83 +1,84 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import tripathi from './tripathi.png';
+import './App.css';
+import buttonClickSound from './buttonClickSound.mp3'; // Import your MP3 file
 
-const App = () => {
-  const [audioContext, setAudioContext] = useState(null);
-  const [mediaStream, setMediaStream] = useState(null);
-  const [volume, setVolume] = useState(0);
+const RandomButton = ({ onClick, top, left }) => {
+  const handleClick = () => {
+    onClick();
+    playButtonClickSound();
+  };
 
-  const canvasRef = useRef();
-
-  useEffect(() => {
-    const initAudioContext = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioCtx.createMediaStreamSource(stream);
-
-        setAudioContext(audioCtx);
-        setMediaStream(stream);
-
-        const analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
-        source.connect(analyser);
-
-        analyser.connect(audioCtx.destination);
-
-        const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-        const updateVolume = () => {
-          analyser.getByteFrequencyData(dataArray);
-          const averageVolume = dataArray.reduce((acc, value) => acc + value, 0) / dataArray.length;
-
-          // Use volume value as needed
-          setVolume(averageVolume);
-        };
-
-        const drawVisualizer = () => {
-          const canvas = canvasRef.current;
-          const ctx = canvas.getContext('2d');
-          const canvasWidth = canvas.width;
-          const canvasHeight = canvas.height;
-
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          ctx.fillStyle = 'blue';
-          const barWidth = (canvasWidth / analyser.frequencyBinCount) * 2.5;
-
-          for (let i = 0; i < dataArray.length; i++) {
-            const barHeight = (dataArray[i] / 255) * canvasHeight;
-            ctx.fillRect(i * barWidth, canvasHeight - barHeight, barWidth, barHeight);
-          }
-
-          // Update visualizer at a slower rate (every 200 milliseconds)
-          setTimeout(() => requestAnimationFrame(drawVisualizer), 1000);
-        };
-
-        requestAnimationFrame(drawVisualizer);
-
-        const intervalId = setInterval(updateVolume, 1000);
-
-        return () => {
-          clearInterval(intervalId);
-          stream.getTracks().forEach((track) => track.stop());
-        };
-      } catch (error) {
-        console.error('Error accessing microphone:', error);
-      }
-    };
-
-    initAudioContext();
-
-    return () => {
-      if (audioContext) {
-        audioContext.close();
-      }
-    };
-  }, [audioContext]);
+  const playButtonClickSound = () => {
+    const audio = new Audio(buttonClickSound);
+    audio.play();
+  };
 
   return (
-    <div>
-      <canvas ref={canvasRef} width="400" height="100" style={{ border: '1px solid #000' }} />
-      <p>Volume: {volume}</p>
+    <button
+      className="random-button"
+      style={{ position: 'absolute', top: top, left: left }}
+      onClick={handleClick}
+    >
+      Click me!
+    </button>
+  );
+};
+
+const getRandomPosition = () => {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  const randomTop = Math.random() * (windowHeight - 50);
+  const randomLeft = Math.random() * (windowWidth - 100);
+
+  return { top: randomTop + 'px', left: randomLeft + 'px' };
+};
+
+const App = () => {
+  const [buttons, setButtons] = useState([
+    {
+      id: 1,
+      top: getRandomPosition().top,
+      left: getRandomPosition().left,
+      visible: true,
+    },
+  ]);
+
+  const handleButtonClick = (buttonId) => {
+    setButtons((prevButtons) =>
+      prevButtons.map((button) =>
+        button.id === buttonId
+          ? { ...button, visible: false }
+          : { ...button }
+      )
+    );
+
+    // Spawn a new button
+    setButtons((prevButtons) => [
+      ...prevButtons,
+      {
+        id: prevButtons.length + 1,
+        top: getRandomPosition().top,
+        left: getRandomPosition().left,
+        visible: true,
+      },
+    ]);
+  };
+
+  return (
+    <div className="app-container">
+      {buttons.map((button) => (
+        button.visible && (
+          <RandomButton
+            key={button.id}
+            onClick={() => handleButtonClick(button.id)}
+            top={button.top}
+            left={button.left}
+          />
+        )
+      ))}
+      <img className="moving-logo" src={tripathi} alt="Logo" />
     </div>
   );
 };

@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Ensure the image stays within the container */
+}
+
+.moving-logo {
+  position: absolute;
+  animation: moveLogo 5s infinite linear;
+}
+
+.moving-logo.speed-2 {
+  animation-duration: 2.5s; /* Double the animation speed */
+}
+
+@keyframes moveLogo {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(calc(100vw - 100%), 50%);
+  }
+
+  50% {
+    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+  }
+
+  75% {
+    transform: translate(0, calc(100vh - 100%));
+  }
+}

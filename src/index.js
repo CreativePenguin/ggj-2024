@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SpeechToText from './SpeechToText';
+import Dictaphone from './SpeechToText';
 import TextToSpeech from './TextToSpeech';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SpeechToText />
+    <Dictaphone />
   </React.StrictMode>
 );
 

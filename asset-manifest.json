@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ggj-2024/static/css/main.0d46adaf.css",
-    "main.js": "/ggj-2024/static/js/main.6cc92c17.js",
+    "main.js": "/ggj-2024/static/js/main.2fba0ac3.js",
     "static/js/787.fa52b1e1.chunk.js": "/ggj-2024/static/js/787.fa52b1e1.chunk.js",
     "static/media/tripathi2.png": "/ggj-2024/static/media/tripathi2.5f95bd759b793d68b4e6.png",
     "static/media/coin.png": "/ggj-2024/static/media/coin.5d6bd0c28046a4ac2f5f.png",
@@ -12,11 +12,11 @@
     "static/media/collect-coin.mp3": "/ggj-2024/static/media/collect-coin.f9f1bc3d8573b0b56e70.mp3",
     "index.html": "/ggj-2024/index.html",
     "main.0d46adaf.css.map": "/ggj-2024/static/css/main.0d46adaf.css.map",
-    "main.6cc92c17.js.map": "/ggj-2024/static/js/main.6cc92c17.js.map",
+    "main.2fba0ac3.js.map": "/ggj-2024/static/js/main.2fba0ac3.js.map",
     "787.fa52b1e1.chunk.js.map": "/ggj-2024/static/js/787.fa52b1e1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0d46adaf.css",
-    "static/js/main.6cc92c17.js"
+    "static/js/main.2fba0ac3.js"
   ]
 }

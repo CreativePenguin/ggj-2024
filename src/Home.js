@@ -17,6 +17,9 @@ const Home = () => {
             <div>
                 <Link to={`complementme`}>Compliment Me Game</Link>
             </div>
+            <div>
+                <Link to={`feedme`}>Feed Me Game</Link>
+            </div>
         </div>
     )
 }

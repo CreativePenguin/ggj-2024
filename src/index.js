@@ -12,6 +12,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import ErrorPage from './ErrorPage';
+import FeedMe from './FeedMe';
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     {
       path: "complementme",
       element: <Dictaphone />
+    },
+    {
+      path: "feedme",
+      element: <FeedMe />
     }
 ]);
 

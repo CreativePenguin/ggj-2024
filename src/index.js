@@ -7,14 +7,14 @@ import TextToSpeech from './TextToSpeech';
 import Home from './Home';
 import Minigames from './Minigames';
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider,
 } from "react-router-dom";
 import ErrorPage from './ErrorPage';
 import FeedMe from './FeedMe';
 import SpeechToText from './SpeechToText';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
       path: "/",
       element: <Home />,

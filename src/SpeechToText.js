@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import './App.css'
+import { Link, Outlet } from 'react-router-dom';
 import tripathi from './tripathi.png';
 import tripathi2 from './tripathi2.png';
 
@@ -32,11 +33,13 @@ const SpeechToText = () => {
 
   return (
     <div class="tripathi-logo">
+      {!browserSupportsSpeechRecognition && "browser doesn't support speech recognition"}
       <img src={tripathiState} class='tripathi-logo' />
       <p>Microphone: {listening ? 'on' : 'off'}</p>
       <button onClick={SpeechRecognition.startListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
+      <Link to={'/'}>Back Home</Link>
       <p>{transcript}</p>
       <p>{message}</p>
     </div>

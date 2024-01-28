@@ -19,6 +19,10 @@ const Home = () => {
                 <Link to={`complementme`}><div class="pixel">Compliment Me Game</div></Link>
                 <Link to={`feedme`}><div class="pixel">Feed Me Game</div></Link>
             </div>
+            <br />
+            <div class='tripathi-logo'>
+                Please enable sound for full experience!
+            </div>
         </>
     )
 }

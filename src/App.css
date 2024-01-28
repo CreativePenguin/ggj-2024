@@ -108,3 +108,60 @@
 		radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, #000000 15px),
 		radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, #000000 15px);
 }
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Ensure the image stays within the container */
+}
+
+.moving-logo {
+  position: absolute;
+  animation: moveLogo 5s infinite linear;
+}
+
+.moving-logo.speed-2 {
+  animation-duration: 2.5s; /* Double the animation speed */
+}
+
+@keyframes moveLogo {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(calc(100vw - 100%), 50%);
+  }
+
+  50% {
+    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+  }
+
+  75% {
+    transform: translate(0, calc(100vh - 100%));
+  }
+}

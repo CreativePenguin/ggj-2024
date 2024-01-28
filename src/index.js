@@ -6,19 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import Dictaphone from './SpeechToText';
 import TextToSpeech from './TextToSpeech';
 import Home from './Home';
+import Minigames from './Minigames';
 import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import ErrorPage from './ErrorPage';
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />
+      element: <Home />,
+      errorElement: <ErrorPage />
     },
     {
       path: "clickme",
-      element: <App />
+      element: <App />,
     },
     {
       path: "complementme",

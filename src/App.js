@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import tripathi from './tripathi.png';
 import tripathi2 from './tripathi2.png';
 import './App.css';
@@ -174,6 +175,7 @@ const App = () => {
           <button className="start-button" onClick={handleStartGame}>
             Start Game
           </button>
+          <Link to="/" className="homepage-button">Go to Homepage</Link>
         </div>
       )}
 
@@ -221,6 +223,8 @@ const App = () => {
               />
               Mute Sound
             </label>
+            <br />
+            <Link to="/" className="homepage-button">Go to Homepage</Link>
           </div>
         </div>
       )}

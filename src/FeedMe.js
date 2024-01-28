@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import tripathi from './tripathi.png';
 import coin from './coin.png';
 import './App.css';
@@ -21,7 +22,7 @@ const RandomButton = ({ onClick, top, left }) => {
       style={{ position: 'absolute', top: top, left: left }}
       onClick={handleClick}
     >
-      <img className="coin" src={coin} />
+      <img className="coin" src={coin} alt="Coin" />
     </button>
   );
 };
@@ -38,20 +39,40 @@ const getRandomPosition = () => {
 
 const FeedMe = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [buttons, setButtons] = useState([]);
+  const [timer, setTimer] = useState(15); // Set the initial timer duration in seconds
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
-  const handleMouseMove = (event) => {
-    const { clientX: x, clientY: y } = event;
-    setPosition({ x, y });
+  useEffect(() => {
+    initializeGame();
+  }, []); // Run this effect when the component mounts
+
+  useEffect(() => {
+    if (timer > 0 && !gameOver) {
+      const intervalId = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    } else {
+      setGameOver(true);
+    }
+  }, [timer, gameOver]);
+
+  const initializeGame = () => {
+    setButtons([
+      {
+        id: 1,
+        top: getRandomPosition().top,
+        left: getRandomPosition().left,
+        visible: true,
+      },
+    ]);
+    setTimer(15); // Reset the timer duration
+    setScore(0); // Reset the score
+    setGameOver(false);
   };
-
-  const [buttons, setButtons] = useState([
-    {
-      id: 1,
-      top: getRandomPosition().top,
-      left: getRandomPosition().left,
-      visible: true,
-    },
-  ]);
 
   const handleButtonClick = (buttonId) => {
     setButtons((prevButtons) =>
@@ -61,6 +82,9 @@ const FeedMe = () => {
           : { ...button }
       )
     );
+
+    // Increment the score
+    setScore((prevScore) => prevScore + 1);
 
     // Spawn a new button
     setButtons((prevButtons) => [
@@ -74,23 +98,41 @@ const FeedMe = () => {
     ]);
   };
 
+  const handleStartGame = () => {
+    initializeGame();
+  };
+
   return (
-    <div className="app-container"onMouseMove={handleMouseMove}>
-    <img
-      src={tripathi}
-      alt="FEED ME"
-      style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
-    />
-      {buttons.map((button) => (
-        button.visible && (
-          <RandomButton
-            key={button.id}
-            onClick={() => handleButtonClick(button.id)}
-            top={button.top}
-            left={button.left}
-          />
-        )
-      ))}
+    <div className="app-container" onMouseMove={(event) => setPosition({ x: event.clientX, y: event.clientY })}>
+      <img
+        src={tripathi}
+        alt="FEED ME"
+        style={{ transform: `translate(${position.x + 5}px, ${position.y + 5}px)` }}
+      />
+
+      {!gameOver ? (
+        <div>
+          <p>Time left: {timer} seconds</p>
+          <p>Score: {score}</p>
+          {buttons.map((button) => (
+            button.visible && (
+              <RandomButton
+                key={button.id}
+                onClick={() => handleButtonClick(button.id)}
+                top={button.top}
+                left={button.left}
+              />
+            )
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h1>Game Over!</h1>
+          <p>Your final score: {score}</p>
+          <button onClick={handleStartGame}>Start New Game</button>
+          <Link to="/" className="homepage-button">Go to Homepage</Link>
+        </div>
+      )}
     </div>
   );
 };

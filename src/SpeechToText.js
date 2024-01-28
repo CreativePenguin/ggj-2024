@@ -10,8 +10,12 @@ const SpeechToText = () => {
   const [tripathiState, setTripathiState] = useState(tripathi);
   const commands = [
     {
-      command: 'University at Buffalo',
-      callback: () => setTripathiState('yay!')
+      command: '*University at Buffalo*',
+      callback: () => setMessage('yay!')
+    },
+    {
+      command: '*hate*',
+      callback: () => setTripathiState(tripathi2)
     }
   ]
 

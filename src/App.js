@@ -3,6 +3,7 @@ import tripathi from './tripathi.png';
 import tripathi2 from './tripathi2.png';
 import './App.css';
 import buttonClickSound from './buttonClickSound.mp3'; // Import your MP3 file
+import buttonClickSound2 from './buttonClickSound2.mp3'; // Import your MP3 file
 
 const RandomButton = ({ onClick, top, left, soundEnabled }) => {
   const handleClick = () => {
@@ -16,6 +17,7 @@ const RandomButton = ({ onClick, top, left, soundEnabled }) => {
     const audio = new Audio(buttonClickSound);
     audio.play();
   };
+
 
   return (
     <button
@@ -109,6 +111,8 @@ const App = () => {
 
   const handleButtonClick = (buttonId) => {
     if (buttonId === 'tripathi') {
+      const audio = new Audio(buttonClickSound2);
+      audio.play();
       setScore((prevScore) => Math.max(0, prevScore - 2)); // Deduct 2 points
       setTripathiImage(tripathi2); // Change the image to tripathi2
       setTimeout(() => {

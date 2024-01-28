@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ggj-2024/static/css/main.f6115122.css",
-    "main.js": "/ggj-2024/static/js/main.2a1c84e0.js",
-    "static/js/787.bdd4867b.chunk.js": "/ggj-2024/static/js/787.bdd4867b.chunk.js",
+    "main.js": "/ggj-2024/static/js/main.d4d1d34e.js",
+    "static/js/787.fa52b1e1.chunk.js": "/ggj-2024/static/js/787.fa52b1e1.chunk.js",
     "static/media/tripathi2.png": "/ggj-2024/static/media/tripathi2.5f95bd759b793d68b4e6.png",
     "static/media/coin.png": "/ggj-2024/static/media/coin.5d6bd0c28046a4ac2f5f.png",
     "static/media/buttonClickSound2.mp3": "/ggj-2024/static/media/buttonClickSound2.7a00fea92233852bb40e.mp3",
@@ -12,11 +12,11 @@
     "static/media/collect-coin.mp3": "/ggj-2024/static/media/collect-coin.f9f1bc3d8573b0b56e70.mp3",
     "index.html": "/ggj-2024/index.html",
     "main.f6115122.css.map": "/ggj-2024/static/css/main.f6115122.css.map",
-    "main.2a1c84e0.js.map": "/ggj-2024/static/js/main.2a1c84e0.js.map",
-    "787.bdd4867b.chunk.js.map": "/ggj-2024/static/js/787.bdd4867b.chunk.js.map"
+    "main.d4d1d34e.js.map": "/ggj-2024/static/js/main.d4d1d34e.js.map",
+    "787.fa52b1e1.chunk.js.map": "/ggj-2024/static/js/787.fa52b1e1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f6115122.css",
-    "static/js/main.2a1c84e0.js"
+    "static/js/main.d4d1d34e.js"
   ]
 }

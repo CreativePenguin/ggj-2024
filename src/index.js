@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Dictaphone from './SpeechToText';
 import TextToSpeech from './TextToSpeech';
 import Home from './Home';
 import Minigames from './Minigames';
@@ -13,6 +12,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from './ErrorPage';
 import FeedMe from './FeedMe';
+import SpeechToText from './SpeechToText';
 
 const router = createBrowserRouter([
     {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     },
     {
       path: "complementme",
-      element: <Dictaphone />
+      element: <SpeechToText />
     },
     {
       path: "feedme",

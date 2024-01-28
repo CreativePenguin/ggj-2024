@@ -30,49 +30,81 @@
   align-items: center;
   justify-content: center;
 }
+.tripathi-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.app-container {
+.pixel, .pixel2 {
+  font-size: 25px;
+  color: black;
+  height: auto;
+  margin: 10px;
+  font-family: 'VT323';
+  
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden; /* Ensure the image stays within the container */
+  display: inline-block;
+  vertical-align: top;
+  text-transform: uppercase;
+  
+  cursor: pointer;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.moving-logo {
-  position: absolute;
-  animation: moveLogo 5s infinite linear;
+.pixel:active, .pixel2:active {
+  top: 2px;
 }
 
-.moving-logo.speed-2 {
-  animation-duration: 2.5s; /* Double the animation speed */
+.pixel {
+  line-height: 0;
+  
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+  
+  border-style: solid;
+  border-width: 20px;
+  -moz-border-image: url(https://i.imgur.com/sREM8Yn.png) 20 stretch;
+  -webkit-border-image: url(https://i.imgur.com/sREM8Yn.png) 20 stretch;
+  -o-border-image: url(https://i.imgur.com/sREM8Yn.png) 20 stretch;
+  border-image: url(https://i.imgur.com/sREM8Yn.png) 20 stretch;
 }
 
-@keyframes moveLogo {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-
-  25% {
-    transform: translate(calc(100vw - 100%), 50%);
-  }
-
-  50% {
-    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
-  }
-
-  75% {
-    transform: translate(0, calc(100vh - 100%));
-  }
+.pixel p {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  width: auto;
+  text-align: center;
+  margin: -20px -20px;
+  line-height: 20px;
+  padding: 10px 20px;
+  
+	background: #000000;
+	background:
+		linear-gradient(135deg, transparent 10px, #000000 0) top left,
+		linear-gradient(225deg, transparent 10px, #000000 0) top right,
+		linear-gradient(315deg, transparent 10px, #000000 0) bottom right,
+		linear-gradient(45deg,  transparent 10px, #000000 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-image:
+		radial-gradient(circle at 0 0, rgba(204,0,0,0) 14px, #000000 15px),
+		radial-gradient(circle at 100% 0, rgba(204,0,0,0) 14px, #000000 15px),
+		radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, #000000 15px),
+		radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, #000000 15px);
 }

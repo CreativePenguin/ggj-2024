@@ -37,10 +37,17 @@
   }
 }
 .app-container {
+  background-image: url("./backdrop.png");
+  background-size: cover;
+  background-position: center;
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* Ensure the image stays within the container */
+}
+
+.coin-money {
+  position: relative;
 }
 
 .moving-logo {

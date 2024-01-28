@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import tripathi from './tripathi.png';
+import coin from './coin.png';
 import './App.css';
-import buttonClickSound from './buttonClickSound.mp3'; // Import your MP3 file
+import buttonClickSound from './collect-coin.mp3'; // Import your MP3 file
 
 const RandomButton = ({ onClick, top, left }) => {
   const handleClick = () => {
@@ -20,7 +21,7 @@ const RandomButton = ({ onClick, top, left }) => {
       style={{ position: 'absolute', top: top, left: left }}
       onClick={handleClick}
     >
-      Click me!
+      <img className="coin" src={coin} />
     </button>
   );
 };
@@ -36,6 +37,13 @@ const getRandomPosition = () => {
 };
 
 const App = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (event) => {
+    const { clientX: x, clientY: y } = event;
+    setPosition({ x, y });
+  };
+
   const [buttons, setButtons] = useState([
     {
       id: 1,
@@ -67,7 +75,12 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container"onMouseMove={handleMouseMove}>
+    <img
+      src={tripathi}
+      alt="FEED ME"
+      style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+    />
       {buttons.map((button) => (
         button.visible && (
           <RandomButton
@@ -78,7 +91,6 @@ const App = () => {
           />
         )
       ))}
-      <img className="moving-logo" src={tripathi} alt="Logo" />
     </div>
   );
 };

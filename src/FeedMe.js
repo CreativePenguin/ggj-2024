@@ -36,7 +36,7 @@ const getRandomPosition = () => {
   return { top: randomTop + 'px', left: randomLeft + 'px' };
 };
 
-const App = () => {
+const FeedMe = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (event) => {
@@ -95,4 +95,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default FeedMe;
